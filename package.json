@@ -1,0 +1,18 @@
+{
+  "devDependencies": {
+    "prettier": "^3.0.2"
+  },
+  "name": "package-example",
+  "description": "한입 크기로 잘라먹는 리액트",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "autumn",
+  "license": "ISC",
+  "dependencies": {
+    "randomcolor": "^0.6.2"
+  }
+}

@@ -12,4 +12,4 @@
 
 ### 2023.08.25 3-7 동기&비동기
 
-### 2023.08.38 3-8 ~ 4-1 promise / async&await / API&fetch
+### 2023.08.38 2-8 ~ 4-1 promise / async&await / API&fetch

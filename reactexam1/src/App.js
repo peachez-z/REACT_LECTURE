@@ -1,21 +1,21 @@
 import "./App.css";
 import MyHeader from "./MyHeader";
 import MyFooter from "./MyFooter";
+import Counter from "./counter";
+import Container from "./container";
 
 function App() {
-  const func = () => {
-    return "func";
-  };
   const number = 5;
   return (
-    <div className="App">
-      <MyHeader />
-      <h3>Hi {func()}</h3>
-      <b id="bold_text">
-        {number}는 : {number % 2 === 0 ? "짝수" : "홀수"}
-      </b>
-      <MyFooter />
-    </div>
+    <Container>
+      {/* container의 chindren으로 아래 값들이 들어옴 ! */}
+      <div>
+        <MyHeader />
+        {/* props */}
+        <Counter initialValue={number} />
+        <MyFooter />
+      </div>
+    </Container>
   );
 }
 

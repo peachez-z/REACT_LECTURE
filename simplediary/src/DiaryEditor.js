@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 
-const DiaryEditor = () => {
+const DiaryEditor = ({ onCreate }) => {
   // DOM 요소에 접근
   const authorInput = useRef();
   const contentInput = useRef();
@@ -27,7 +27,14 @@ const DiaryEditor = () => {
       contentInput.current.focus();
       return;
     }
+    onCreate(state.author, state.content, state.emotion);
     alert("저장성공");
+    // setState로 값들을 다시 초기화
+    setState({
+      author: "",
+      content: "",
+      emotion: 1,
+    });
   };
 
   return (

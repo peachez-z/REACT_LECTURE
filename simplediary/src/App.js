@@ -1,10 +1,8 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import "./App.css";
 import DiaryEditor from "./DiaryEditor";
 import DiaryList from "./DiaryList";
-// import Lifecycle from "./Lifecycle";
-
-// https://jsonplaceholder.typicode.com/comments
+import OptimizeTest from "./OptimizeTest";
 
 function App() {
   // 일기 데이터 배열을 저장
@@ -49,7 +47,6 @@ function App() {
   };
 
   const onRemove = (targetId) => {
-    console.log(`${targetId}가 삭제되었습니다.`);
     const newDiaryList = data.filter((it) => it.id !== targetId);
     console.log(newDiaryList);
     setData(newDiaryList);
@@ -65,10 +62,24 @@ function App() {
     );
   };
 
+  const getDiaryAnalysis = useMemo(() => {
+    const goodCount = data.filter((it) => it.emotion >= 3).length;
+    const badCount = data.length - goodCount;
+    const goodRatio = (goodCount / data.length) * 100;
+
+    return { goodCount, badCount, goodRatio };
+    // data.length가 변화할 때만 다시 동작한다
+  }, [data.length]);
+
+  const { goodCount, badCount, goodRatio } = getDiaryAnalysis;
   return (
     <div className="App">
-      {/* <Lifecycle /> */}
+      <OptimizeTest />
       <DiaryEditor onCreate={onCreate} />
+      <div>전체 일기 : {data.length}</div>
+      <div>기분 좋은 일기 : {goodCount} </div>
+      <div>기분 나쁜 일기 : {badCount}</div>
+      <div>기분 좋은 일기 비율 : {goodRatio}</div>
       <DiaryList onEdit={onEdit} onRemove={onRemove} diarylist={data} />
     </div>
   );
